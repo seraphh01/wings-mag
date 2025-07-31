@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getProducts, getOrders, updateProduct, deleteProduct, updateOrderStatus, getSalesByProduct, getSalesOverTime, getLowInventory, addProduct, trackOrder, uploadProductPhoto, getProductPhotos, deleteProductPhoto, deleteOrder } from './api';
 import { dateFormatter} from './date';
-import { BACKEND_BASE } from './main';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBoxOpen, faCancel, faCircleInfo, faEdit, faFolderOpen, faSave, faSignOut, faTrash } from '@fortawesome/free-solid-svg-icons';
 const ORDER_STATUSES = ["pending", "processing", "shipped", "delivered", "cancelled"];
@@ -362,7 +361,7 @@ export default function AdminPanel({ user }) {
                 {photoList.length === 0 && <span style={{ color: '#aaa' }}>(No photos)</span>}
                 {photoList.map(photo => (
                   <div key={photo.id} style={{ position: 'relative', display: 'inline-block' }}>
-                    <img src={photo.url.startsWith('http') ? photo.url : BACKEND_BASE + photo.url} alt={photo.alt_text || ''} style={{ width: 80, height: 80, objectFit: 'cover', borderRadius: 6, border: '1px solid #eee' }} />
+                    <img src={photo.url} alt={photo.alt_text || ''} style={{ width: 80, height: 80, objectFit: 'cover', borderRadius: 6, border: '1px solid #eee' }} />
                     <button onClick={() => handleDeletePhoto(photo.id)} style={{ position: 'absolute', top: 2, right: 2, background: '#fff', border: 'none', color: 'red', fontWeight: 'bold', borderRadius: '50%', width: 22, height: 22, cursor: 'pointer', boxShadow: '0 1px 4px #0002' }}>&times;</button>
                   </div>
                 ))}

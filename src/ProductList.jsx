@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { getProducts } from './api';
-import { BACKEND_BASE } from './main';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -38,7 +37,7 @@ export default function ProductList({ onAddToCart }) {
                 {product.photos.map((photo, idx) => (
                   <img
                     key={idx}
-                    src={photo.startsWith('http') ? photo : BACKEND_BASE + photo}
+                    src={photo}
                     alt={product.name + ' photo ' + (idx + 1)}
                     style={{  objectFit: 'cover', borderRadius: 6, border: '1px solid #eee', height: 260 }}
                   />

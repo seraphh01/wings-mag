@@ -1,4 +1,7 @@
 // Admin: upload product photo
+
+const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:3001/api';
+
 export async function uploadProductPhoto(productId, file, user, alt_text = '', photo_order = 0) {
   const formData = new FormData();
   formData.append('photo', file);
@@ -162,7 +165,6 @@ export async function placeOrder({ user, cart, shipping_address, email }) {
   return res.json();
 }
 // src/api.js
-const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:3001/api';
 
 export async function register(email, password) {
   const res = await fetch(`${API_BASE}/auth/register`, {
