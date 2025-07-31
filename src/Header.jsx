@@ -35,8 +35,8 @@ export function Header({ user, onLogout, onLoginClick, cartCount, onCartClick, o
     }}>
       <h1 style={{ margin: 0, fontSize: 36 }}>WINGSMAG Online Shop</h1>
       <div style={{ display: 'flex', alignItems: 'center', gap: 24, position: 'relative' }}>
-        <img src="romania.jpg" alt="Romania Flag" style={{ width: 48, height: 48, borderRadius: '50%' }} />
-        <img src="logo.jpg" alt="WingsMag Logo" style={{ width: 48, height: 48, borderRadius: '50%' }} />
+        <img src="assets/romania.jpg" alt="Romania Flag" style={{ width: 48, height: 48, borderRadius: '50%' }} />
+        <img src="assets/logo.jpg" alt="WingsMag Logo" style={{ width: 48, height: 48, borderRadius: '50%' }} />
         <button onClick={onCartClick} style={{ position: 'relative', borderRadius: 20, height: 48, padding: '12px 24px', fontWeight: 600, fontSize: 22, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8 }}>
           <FontAwesomeIcon icon={faShoppingCart} />
           {cartCount > 0 && (
