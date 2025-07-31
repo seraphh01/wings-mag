@@ -1,7 +1,8 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faRightToBracket, faUser } from '@fortawesome/free-solid-svg-icons';
-
+import  romania from './assets/romania.jpg';
+import  logo  from './assets/logo.jpg';
 import './App.css';
 
 export function Header({ user, onLogout, onLoginClick, cartCount, onCartClick, onOrdersClick }) {
@@ -33,10 +34,12 @@ export function Header({ user, onLogout, onLoginClick, cartCount, onCartClick, o
       margin: 0,
       padding: '2rem 4rem'
     }}>
-      <h1 style={{ margin: 0, fontSize: 36 }}>WINGSMAG Online Shop</h1>
+      <h1 style={{ margin: 0, fontSize: 36, alignContent: 'center', display: 'flex', alignItems: 'center', gap: 16, fontWeight: 700 }}>
+                <img src={logo} alt="WingsMag Logo" style={{ width: 48, height: 48, borderRadius: '50%' }} />
+
+        WINGSMAG Online Shop</h1>
       <div style={{ display: 'flex', alignItems: 'center', gap: 24, position: 'relative' }}>
-        <img src="assets/romania.jpg" alt="Romania Flag" style={{ width: 48, height: 48, borderRadius: '50%' }} />
-        <img src="assets/logo.jpg" alt="WingsMag Logo" style={{ width: 48, height: 48, borderRadius: '50%' }} />
+        <img src={romania} alt="Romania Flag" style={{ width: 32, height: 32, borderRadius: '50%' }} />
         <button onClick={onCartClick} style={{ position: 'relative', borderRadius: 20, height: 48, padding: '12px 24px', fontWeight: 600, fontSize: 22, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8 }}>
           <FontAwesomeIcon icon={faShoppingCart} />
           {cartCount > 0 && (
