@@ -1,8 +1,8 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingCart, faRightToBracket, faUser } from '@fortawesome/free-solid-svg-icons';
-import  romania from './assets/romania.jpg';
-import  logo  from './assets/logo.jpg';
+import { faShoppingCart, faUser } from '@fortawesome/free-solid-svg-icons';
+import  romania from './assets/romania.svg';
+import  logo  from './assets/wings.png';
 import './App.css';
 
 export function Header({ user, onLogout, onLoginClick, cartCount, onCartClick, onOrdersClick }) {
