@@ -70,6 +70,7 @@ button:focus-visible {
     background: #181a1b;
     color: #fafafa;
   }
+
   button {
     background-color: #222;
     color: #fafafa;
@@ -83,6 +84,12 @@ button:focus-visible {
     background: #222;
     color: #fafafa;
     border-color: #444;
+  }
+
+  .revert-cart {
+        background: #fafafa;
+    color: #213547;
+    border-color: #ccc;
   }
 }
 
@@ -112,4 +119,11 @@ button:focus-visible {
     color: #213547;
     border-color: #ccc;
   }
+
+  .revert-cart {
+    background: #222;
+    color: #fafafa;
+    border-color: #444;
+  }
+
 }

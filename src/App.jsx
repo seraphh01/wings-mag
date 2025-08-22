@@ -77,14 +77,17 @@ function App() {
 
   return (
     <div>
-      <Header
-        user={user}
-        onLogout={handleLogout}
-        onLoginClick={() => setShowAuth(true)}
-        cartCount={cart.reduce((sum, item) => sum + item.qty, 0)}
-        onCartClick={() => setShowCart(true)}
-        onOrdersClick={handleOrdersClick}
-      />
+      <div className='sticky-header cart'>
+        <Header
+          user={user}
+          onLogout={handleLogout}
+          onLoginClick={() => setShowAuth(true)}
+          cartCount={cart.reduce((sum, item) => sum + item.qty, 0)}
+          onCartClick={() => setShowCart(true)}
+          onOrdersClick={handleOrdersClick}
+        />
+      </div>
+
       {user?.is_admin && <AdminPanel user={user} />}
       <main>
         <ProductList onAddToCart={handleAddToCart} />

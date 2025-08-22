@@ -8,6 +8,7 @@ export default function  OrdersPanel({ user, onClose }) {
   const [trackResult, setTrackResult] = useState(null);
   const [trackError, setTrackError] = useState('');
   const [historyEmail, setHistoryEmail] = useState('');
+  const [trackEmail, setTrackEmail] = useState('');
 
   const fetchOrders = async () => {
     setLoading(true);
@@ -70,7 +71,8 @@ export default function  OrdersPanel({ user, onClose }) {
         <h2 style={{ marginTop: 32 }}>Track Order</h2>
                     <form onSubmit={handleTrack} style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
         <input type="text" placeholder="Order ID" value={trackId} onChange={e => setTrackId(e.target.value)} style={{ flex: 1 }} />
-        <button type="submit">Track</button>
+        <input type="email" placeholder="Enter your email" value={trackEmail} onChange={e => setTrackEmail(e.target.value)} style={{ flex: 1 }} />
+        <button type="submit">Track order</button>
       </form>
       
       {trackResult && (

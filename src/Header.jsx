@@ -22,7 +22,7 @@ export function Header({ user, onLogout, onLoginClick, cartCount, onCartClick, o
   }, [showMenu]);
 
   return (
-    <header style={{
+    <header className='cart' style={{
       width: '100vw',
       minHeight: 0,
       height: 'auto',
@@ -37,7 +37,7 @@ export function Header({ user, onLogout, onLoginClick, cartCount, onCartClick, o
       <h1 style={{ margin: 0, fontSize: 36, alignContent: 'center', display: 'flex', alignItems: 'center', gap: 16, fontWeight: 700 }}>
                 <img src={logo} alt="WingsMag Logo" style={{ width: 48, height: 48, borderRadius: '50%' }} />
 
-        WINGSMAG Online Shop</h1>
+        WINGSMAG</h1>
       <div style={{ display: 'flex', alignItems: 'center', gap: 24, position: 'relative' }}>
         <img src={romania} alt="Romania Flag" style={{ width: 32, height: 32, borderRadius: '50%' }} />
         <button onClick={onCartClick} style={{ position: 'relative', borderRadius: 20, height: 48, padding: '12px 24px', fontWeight: 600, fontSize: 22, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8 }}>

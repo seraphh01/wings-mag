@@ -126,7 +126,7 @@ export default function AdminPanel({ user }) {
   // Edit product handlers
   const startEditProduct = (p) => {
     setEditProductId(p.id);
-    setEditProduct({ name: p.name, price: p.price, inventory: p.inventory, size: p.size, description: p.description });
+    setEditProduct({ ...p, idealFor: p.idealfor || '' });
   };
   const cancelEditProduct = () => {
     setEditProductId(null);

@@ -40,3 +40,11 @@
 .read-the-docs {
   color: #888;
 }
+
+.sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #fff;
+  box-shadow: 0 2px 8px #0001;
+}
