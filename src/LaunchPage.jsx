@@ -220,9 +220,9 @@ export default function LaunchPage({ onAddToCart }) {
       {/* CTA FINAL */}
       <section style={{ textAlign: 'center', padding: '60px 0', background: '#222', color: '#fff' }}>
         <h2 style={{ fontSize: 36, fontWeight: 700, marginBottom: 24 }}>
-          Pregătit să îți ridici antrenamentele la nivelul următor?
+          Ești pregătit să îți duci antrenamentele la nivelul următor?
         </h2>
-        <a href="#produse"><button style={{ fontSize: 20, borderRadius: 16, padding: '12px 32px', background: '#fff', color: '#222', fontWeight: 600, border: 'none', boxShadow: '0 2px 8px #0002', cursor: 'pointer' }}>Vezi modelele</button></a>
+        <a href="#produse"><button style={{ fontSize: 20, borderRadius: 16, padding: '12px 32px', background: '#fff', color: '#222', fontWeight: 600, border: 'none', boxShadow: '0 2px 8px #0002', cursor: 'pointer' }}>Sunt pregătit</button></a>
       </section>
     </div>
   );
