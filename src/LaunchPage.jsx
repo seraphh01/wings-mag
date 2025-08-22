@@ -1,9 +1,20 @@
 import React, { useEffect, useState } from 'react';
+import storyImages from './assets/story';
 import { getProducts } from './api';
 import cover from './assets/cover.jpg';
 import './ProductList.css';
 
-export default function LaunchPage() {
+export default function LaunchPage({ onAddToCart }) {
+  const [modalImg, setModalImg] = useState(null);
+  const [storyIndex, setStoryIndex] = useState(0);
+
+  // Auto-scroll carousel every 3 seconds
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setStoryIndex(idx => (idx + 1) % storyImages.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [storyImages.length]);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -27,7 +38,7 @@ export default function LaunchPage() {
     <div style={{ width: '100%', fontFamily: 'inherit' }}>
       {/* HERO */}
       <section style={{ textAlign: 'center', padding: '60px 0', background: '#222', color: '#fff' }}>
-        <img src={cover} alt="cover" style={{ width: '80%', maxWidth: 600, borderRadius: 12, marginBottom: 32 }} />
+        <img src={cover} alt="cover" style={{  maxWidth: 800, borderRadius: 12, marginBottom: 32 }} />
         <h1 style={{ fontSize: 40, fontWeight: 700, marginBottom: 24 }}>
           Paralele construite pentru progresul tău în calisthenics
         </h1>
@@ -40,6 +51,41 @@ export default function LaunchPage() {
       {/* STORY */}
       <section style={{ maxWidth: 800, margin: '0 auto', padding: '64px 24px' }}>
         <h2 style={{ fontSize: 32, fontWeight: 700, marginBottom: 24 }}>Povestea noastră</h2>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 24 }}>
+          <div style={{ position: 'relative',  marginBottom: 16,width: 800 }}>
+            <img
+              src={storyImages[storyIndex]}
+              alt={`story ${storyIndex + 1}`}
+              style={{  height: 600, width: 600, objectFit: 'contain', borderRadius: 12, boxShadow: '0 2px 16px #0002' }}
+            />
+            <div style={{  bottom: 8, left: 0, width: '100%', display: 'flex', justifyContent: 'center', gap: 6 }}>
+            <button
+              onClick={() => setStoryIndex((storyIndex - 1 + storyImages.length) % storyImages.length)}
+              style={{ position: 'absolute', top: '50%', left: 8, transform: 'translateY(-50%)', border: 'none', borderRadius: '50%', width: 32, height: 32, fontSize: 20, cursor: 'pointer', boxShadow: '0 1px 4px #0002', opacity: 0.8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+              aria-label="Previous photo"
+            >&#8592;</button>
+              {storyImages.map((_, idx) => (
+                <span
+                  key={idx}
+                  style={{
+                    display: 'inline-block',
+                    width: 10,
+                    height: 10,
+                    borderRadius: '50%',
+                    background: idx === storyIndex ? '#222' : '#bbb',
+                    opacity: idx === storyIndex ? 1 : 0.5,
+                    margin: '0 2px',
+                  }}
+                />
+              ))}
+                          <button
+              onClick={() => setStoryIndex((storyIndex + 1) % storyImages.length)}
+              style={{ position: 'absolute', top: '50%', right: 8, transform: 'translateY(-50%)', border: 'none', borderRadius: '50%', width: 32, height: 32, fontSize: 20, cursor: 'pointer', boxShadow: '0 1px 4px #0002', opacity: 0.8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+              aria-label="Next photo"
+            >&#8594;</button>
+            </div>
+          </div>
+        </div>
         <p style={{ fontSize: 18, marginBottom: 16 }}>
           Totul a început din dorința de a economisi bani și de a avea un echipament simplu, dar eficient. Primul set l-am construit împreună cu un prieten, fără să știm exact ce facem. Am învățat, am investit în unelte profesionale și acum reușim să facem paralele de calitate înaltă, accesibile oricui.
         </p>
@@ -75,7 +121,12 @@ export default function LaunchPage() {
           {products.sort((a, b) => a.id - b.id).map(product => (
             <div className='revert-cart' key={product.id} style={{ justifyContent: 'space-between',borderRadius: 16, boxShadow: '0 2px 12px #0002', padding: 24, width: 300, textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', transition: 'transform 0.2s', cursor: 'pointer' }}>
               {Array.isArray(product.photos) && product.photos.length > 0 ? (
-                <img src={product.photos[0]} alt={product.name} style={{ width: '100%', height: 180, objectFit: 'contain', borderRadius: 8, marginBottom: 16, background: '#fafafa' }} />
+                <img
+                  src={product.photos[0]}
+                  alt={product.name}
+                  style={{ width: '100%', height: 180, objectFit: 'contain', borderRadius: 8, marginBottom: 16, background: '#fafafa', cursor: 'zoom-in' }}
+                  onClick={() => setModalImg(product.photos[0])}
+                />
               ) : (
                 <div style={{ width: '100%', height: 180, background: '#f5f5f5', borderRadius: 8, marginBottom: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#bbb', fontSize: 24 }}>
                   (Fără imagine)
@@ -84,10 +135,55 @@ export default function LaunchPage() {
               <h3 style={{ fontSize: 22, fontWeight: 600, marginBottom: 8 }}>{product.name}</h3>
               <p style={{ color: '#666', marginBottom: 12 }}>{product.description}</p>
               <p style={{ fontSize: 22, fontWeight: 700, marginBottom: 16 }}>RON {product.price}</p>
-              <button style={{ width: '100%', borderRadius: 12, padding: '12px 0', background: '#222', color: '#fff', fontWeight: 600, border: 'none', fontSize: 18, cursor: 'pointer' }}>Cumpără acum</button>
+              <button onClick={() => onAddToCart(product)} style={{ width: '100%', borderRadius: 12, padding: '12px 0', background: '#222', color: '#fff', fontWeight: 600, border: 'none', fontSize: 18, cursor: 'pointer' }}>Cumpără acum</button>
             </div>
           ))}
         </div>
+
+        {/* Modal for full product image */}
+        {modalImg && (
+          <div
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              width: '100vw',
+              height: '100vh',
+              background: 'rgba(0,0,0,0.8)',
+              zIndex: 3000,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+            onClick={() => setModalImg(null)}
+          >
+            <div style={{ position: 'relative', maxWidth: '90vw', maxHeight: '90vh' }} onClick={e => e.stopPropagation()}>
+              <img src={modalImg} alt="Product" style={{ maxWidth: '90vw', maxHeight: '80vh', borderRadius: 12, boxShadow: '0 4px 32px #0008', background: '#fff' }} />
+              <button
+                onClick={() => setModalImg(null)}
+                style={{
+                  position: 'absolute',
+                  top: 8,
+                  right: 8,
+                  fontSize: 32,
+                  background: 'rgba(0,0,0,0.5)',
+                  color: '#fff',
+                  border: 'none',
+                  borderRadius: '50%',
+                  width: 44,
+                  height: 44,
+                  cursor: 'pointer',
+                  zIndex: 3100,
+                  display: 'flex', alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+                aria-label="Închide imaginea"
+              >
+                &times;
+              </button>
+            </div>
+          </div>
+        )}
       </section>
 
       {/* COMPARISON TABLE */}

@@ -41,7 +41,7 @@ export default function CheckoutModal({ cart, user, onClose, onOrderPlaced }) {
             />
           )}
           <textarea
-            placeholder="Shipping address"
+            placeholder="Adresa de livrare"
             value={shipping}
             onChange={e => setShipping(e.target.value)}
             required

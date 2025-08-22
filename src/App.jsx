@@ -12,6 +12,7 @@ import './App.css';
 import { getOrders } from './api';
 import { Header } from './Header';
 import Footer from './Footer';
+import LaunchPage from './LaunchPage';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -89,8 +90,10 @@ function App() {
       </div>
 
       {user?.is_admin && <AdminPanel user={user} />}
+
       <main>
-        <ProductList onAddToCart={handleAddToCart} />
+              <LaunchPage onAddToCart={handleAddToCart}/>
+        {/* <ProductList onAddToCart={handleAddToCart} /> */}
         {showOrders && (
           <OrdersPanel user={user} onClose={() => setShowOrders(false)}/>
         )}

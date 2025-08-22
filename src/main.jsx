@@ -9,15 +9,6 @@ import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 
 
-// createRoot(document.getElementById('root')).render(
-//   <BrowserRouter>
-//     <Routes>
-//       <Route path="/launch-page" element={<LaunchPage />} />
-//       <Route path="/*" element={<App />} />
-//     </Routes>
-//   </BrowserRouter>
-// );
-
 const router = createBrowserRouter([
   {
     path: "/wings-mag",
